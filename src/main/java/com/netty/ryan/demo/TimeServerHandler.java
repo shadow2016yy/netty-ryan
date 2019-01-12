@@ -9,6 +9,8 @@ import java.util.Date;
 
 /**
  * Created by Ryan on 2019/1/6.
+ * 这里应用到的netty版本是4.1.31Final
+ * 不符合本案例的需求
  */
 public class TimeServerHandler extends ChannelHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
@@ -20,7 +22,6 @@ public class TimeServerHandler extends ChannelHandlerAdapter {
         String currentTime = "QUERY TIME ORDER".equalsIgnoreCase(body) ? new Date(System.currentTimeMillis()).toString() : "BAD ORDER";
         ByteBuf response = Unpooled.copiedBuffer(currentTime.getBytes());
         ctx.write(response);
-
     }
 
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception{
